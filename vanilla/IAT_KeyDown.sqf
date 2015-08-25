@@ -66,11 +66,11 @@ IAT_keyDown = compileFinal
 // Only run on player PC
 if (hasInterface) then
 {
-	private["_display","_IAT_drawGroupKeybaord","_IAT_drawGroupMouse","_IAT_drawGroupJoystick"];
+	private["_display","_IAT_keyDownKeybaord","_IAT_keyDownMouse","_IAT_keyDownJoystick"];
 	// Wait till IGUI is loaded
 	waitUntil {!isNull findDisplay 46};
-	_display					= (findDisplay 46);
-	_IAT_drawGroupKeybaord		= _display displayAddEventHandler ["KeyDown","{_this call IAT_keyDown;}"];
-	_IAT_drawGroupMouse		= _display displayAddEventHandler ["MouseButtonDown","{_this call IAT_keyDown;}"];
-	_IAT_drawGroupJoystick		= _display displayAddEventHandler ["JoystickButton","{_this call IAT_keyDown;}"];
+	_display			= (findDisplay 46);
+	_IAT_keyDownKeybaord		= _display displayAddEventHandler ["KeyDown","{_this call IAT_keyDown;}"];
+	_IAT_keyDownMouse		= _display displayAddEventHandler ["MouseButtonDown","{_this call IAT_keyDown;}"];
+	_IAT_keyDownJoystick		= _display displayAddEventHandler ["JoystickButton","{_this call IAT_keyDown;}"];
 };
