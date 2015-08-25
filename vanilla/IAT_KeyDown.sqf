@@ -6,18 +6,17 @@
 	Parameter(s):
 		NONE
 	Install:
-		Add #include IAT_KeyDown.sqf in init.sqf
+		Add #include "IAT_KeyDown.sqf" in init.sqf
 */
 
 IAT_keyDown = compileFinal
-{"
+"
 	private[""_code"",""_handled""];
 	_code = (_this select 1);
 	_handled = false;
 
 	switch (true) do 
 	{
-		// No script kiddies
 		case ( _code in actionKeys ""ForceCommandingMode"" );
 		case ( _code in actionKeys ""TacticalView"" );
 		case ( _code in actionKeys ""SelectGroupUnit0"" );
@@ -46,9 +45,6 @@ IAT_keyDown = compileFinal
 		{
 			_handled = true;
 		};
-
-		// No side-chat speak
-		// 0 - Global, 1 - Side, 2 - Command, 3 - Group, 4 - Vehicle, 5 - Direct
 		case ( _code in actionKeys ""PushToTalkSide"" );
 		case ( _code in actionKeys ""PushToTalkAll"" );
 		case ( _code in actionKeys ""PushToTalkDirect"" );
@@ -62,15 +58,14 @@ IAT_keyDown = compileFinal
 		};
 	};
 	_handled;
-"};
+";
 // Only run on player PC
 if (hasInterface) then
 {
-	private["_display","_IAT_keyDownKeybaord","_IAT_keyDownMouse","_IAT_keyDownJoystick"];
+	private["_IAT_keyDownKeybaord","_IAT_keyDownMouse","_IAT_keyDownJoystick"];
 	// Wait till IGUI is loaded
 	waitUntil {!isNull findDisplay 46};
-	_display			= (findDisplay 46);
-	_IAT_keyDownKeybaord		= _display displayAddEventHandler ["KeyDown","{_this call IAT_keyDown;}"];
-	_IAT_keyDownMouse		= _display displayAddEventHandler ["MouseButtonDown","{_this call IAT_keyDown;}"];
-	_IAT_keyDownJoystick		= _display displayAddEventHandler ["JoystickButton","{_this call IAT_keyDown;}"];
+	_IAT_keyDownKeybaord	= (findDisplay 46) displayAddEventHandler ["KeyDown","_this call IAT_keyDown"];
+	_IAT_keyDownMouse		= (findDisplay 46) displayAddEventHandler ["MouseButtonDown","_this call IAT_keyDown"];
+	_IAT_keyDownJoystick	= (findDisplay 46) displayAddEventHandler ["JoystickButton","_this call IAT_keyDown"];
 };
