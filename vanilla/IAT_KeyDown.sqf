@@ -9,7 +9,7 @@
 		Add #include IAT_KeyDown.sqf in init.sqf
 */
 
-IAT_drawGroup = compileFinal
+IAT_keyDown = compileFinal
 {"
 	private[""_code"",""_handled""];
 	_code = (_this select 1);
@@ -70,7 +70,7 @@ if (hasInterface) then
 	// Wait till IGUI is loaded
 	waitUntil {!isNull findDisplay 46};
 	_display					= (findDisplay 46);
-	_IAT_drawGroupKeybaord		= _display displayAddEventHandler ["KeyDown","{_this call IAT_drawGroup;}"];
-	_IAT_drawGroupMouse		= _display displayAddEventHandler ["MouseButtonDown","{_this call IAT_drawGroup;}"];
-	_IAT_drawGroupJoystick		= _display displayAddEventHandler ["JoystickButton","{_this call IAT_drawGroup;}"];
+	_IAT_drawGroupKeybaord		= _display displayAddEventHandler ["KeyDown","{_this call IAT_keyDown;}"];
+	_IAT_drawGroupMouse		= _display displayAddEventHandler ["MouseButtonDown","{_this call IAT_keyDown;}"];
+	_IAT_drawGroupJoystick		= _display displayAddEventHandler ["JoystickButton","{_this call IAT_keyDown;}"];
 };
