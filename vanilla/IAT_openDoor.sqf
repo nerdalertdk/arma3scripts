@@ -12,7 +12,9 @@
 
 // Only run on player PC
 if (!hasInterface) exitWith{};
-IAT_openDoor = compileFinal
+
+//IAT_openDoor = compileFinal
+IAT_openDoor = compile
 "
 	if !(alive player) exitWith {};
 	private[""_position0"", ""_position1"", ""_intersections"", ""_count"", ""_house"", ""_door""];
@@ -22,6 +24,7 @@ IAT_openDoor = compileFinal
 	_intersections	= lineIntersectsWith [ATLToASL _position0, ATLToASL _position1, objNull, objNull, true];
 
 	_count			= count _intersections;
+		systemChat str _count;
 	if (_count isEqualTo 0) exitWith {};
 
 	_house			= _intersections select (_count - 1);
@@ -34,7 +37,9 @@ IAT_openDoor = compileFinal
 	_door 			= format [""%1_rot"", _door];
 
 	_doorPhase 		= _house animationPhase _door;
-	_doorPhase 		= [1,0] select (_doorPhase < 1);
+	_doorPhase 		= [0,1] select (_doorPhase < 1);
+	
 	_house animate [_door, _doorPhase];
+	
+
 ";
-//waitUntil {alive player};

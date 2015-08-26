@@ -12,7 +12,9 @@
 
 // Only run on player PC
 if (!hasInterface) exitWith{};
-IAT_drawGroup = compileFinal
+
+//IAT_drawGroup = compileFinal
+IAT_drawGroup = compile
 "
 	if(!visibleMap) exitwith {};
 	private[""_map"",""_iconArray"",""_playerGrp"",""_groupMembers"",""_unit"",""_names"",""_icon"",""_color""];
@@ -36,7 +38,7 @@ IAT_drawGroup = compileFinal
 				_names = _names +  format[""%1, "",name _unit];
 			} foreach (crew vehicle _unit);
 
-			if(isStreamFriendlyUIEnabled) then {_names = ""John Doe"";};
+			if(isStreamFriendlyUIEnabled) then {_names = """";};
 
 			_iconArray pushback
 			[
@@ -51,9 +53,12 @@ IAT_drawGroup = compileFinal
 				(0.3 / 10)
 			];
 		};
+		true
 	} foreach _groupMembers;
 
 	{_map drawIcon _x;} count _iconArray;
+	
+	true
 ";
 private["_IAT_drawGroup"];
 waitUntil {alive player};
