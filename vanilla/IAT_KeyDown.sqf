@@ -72,11 +72,9 @@ IAT_keyDown = compileFinal
 	};
 	_handled;
 ";
-
-private["_IAT_keyDownKeybaord","_IAT_keyDownMouse","_IAT_keyDownJoystick","_IAT_display"];
-// Wait till IGUI is loaded
 waitUntil {!isNull findDisplay 46};
-_IAT_display = (findDisplay 46);
+private["_IAT_keyDownKeybaord","_IAT_keyDownMouse","_IAT_keyDownJoystick","_IAT_display"];
+_IAT_display 			= (findDisplay 46);
 _IAT_keyDownKeybaord	= _IAT_display displayAddEventHandler ["KeyDown","_this call IAT_keyDown"];
 _IAT_keyDownMouse		= _IAT_display displayAddEventHandler ["MouseButtonDown","_this call IAT_keyDown"];
 _IAT_keyDownJoystick	= _IAT_display displayAddEventHandler ["JoystickButton","_this call IAT_keyDown"];

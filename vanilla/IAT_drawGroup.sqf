@@ -7,15 +7,14 @@
 		NONE
 	Install:
 		Add #include "IAT_drawGroup.sqf" in init.sqf
+		
 */
 
 // Only run on player PC
 if (!hasInterface) exitWith{};
-
 IAT_drawGroup = compileFinal
 "
 	if(!visibleMap) exitwith {};
-
 	private[""_map"",""_iconArray"",""_playerGrp"",""_groupMembers"",""_unit"",""_names"",""_icon"",""_color""];
 	_map 		= _this select 0;
 	_iconArray 	= [];
@@ -56,8 +55,6 @@ IAT_drawGroup = compileFinal
 
 	{_map drawIcon _x;} count _iconArray;
 ";
-
 private["_IAT_drawGroup"];
-// it's alive :D
 waitUntil {alive player};
 _IAT_drawGroup = ((findDisplay 12) displayCtrl 51) ctrlAddEventHandler ["Draw","_this call IAT_drawGroup"];

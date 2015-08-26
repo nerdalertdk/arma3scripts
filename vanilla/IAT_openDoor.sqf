@@ -6,13 +6,12 @@
 	Parameter(s):
 		NONE
 	Install:
-		DONT IS WIP, not tested
+		DON'T USE IS WIP, not tested!!!!
 		Add #include "IAT_openDoor.sqf" in init.sqf
 */
 
 // Only run on player PC
 if (!hasInterface) exitWith{};
-
 IAT_openDoor = compileFinal
 "
 	if !(alive player) exitWith {};
@@ -38,6 +37,4 @@ IAT_openDoor = compileFinal
 	_doorPhase 		= [1,0] select (_doorPhase < 1);
 	_house animate [_door, _doorPhase];
 ";
-// It's alive :D
 //waitUntil {alive player};
-//IAT_openDoorsActive = true;

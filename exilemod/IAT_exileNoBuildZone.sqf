@@ -43,8 +43,8 @@ ExileClientConstructionResult = 2;
 
 */
 
-private["_buildingList"];
-_buildingList = compileFinal str [
+private["_IAT_buildingList"];
+_IAT_buildingList = compileFinal str [
 	"Land_Mil_ControlTower",
 	"Land_SS_hangar",
 	"Land_Mil_Barracks_i",
@@ -61,7 +61,7 @@ IAT_exileNoBuildZone = compileFinal format
 	{
 		ExileClientConstructionResult = 2;
 	};
-",_buildingList];
+",call _IAT_buildingList];
 
 // Only run on player PC
 if (hasInterface) then
